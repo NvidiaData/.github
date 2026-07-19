@@ -1,0 +1,74 @@
+# .github
+
+---
+title: "README: GPU, Tensors, AI & Python"
+---
+
+# GPU, Tensors, AI & Python
+
+This document gives a concise overview and quick-start guidance for working with GPUs, tensors, and AI using Python. It's intended for researchers and engineers who want to leverage NVIDIA GPUs and the Python ML ecosystem for efficient model development and deployment.
+
+## Why GPUs?
+GPUs (Graphics Processing Units) accelerate parallel computations common in machine learning and scientific computing. They provide:
+- Massive parallelism for matrix and tensor operations
+- High memory bandwidth for large models and datasets
+- Mature software stack (CUDA, cuDNN, NVIDIA drivers)
+
+Key NVIDIA technologies: CUDA, cuDNN, TensorRT, and Nsight tools.
+
+## Tensors: the primary data structure
+A tensor is a multi-dimensional array (generalization of vectors and matrices). Tensors are the fundamental building blocks in modern deep learning frameworks.
+
+Concepts:
+- Shape and dtype (e.g., float32, float16)
+- Device placement (CPU vs GPU)
+- Broadcasting, indexing, and reductions
+
+## AI frameworks (Python-first)
+Popular Python frameworks that run on GPUs:
+- PyTorch — dynamic graph, strong ecosystem for research
+- TensorFlow — production-grade, graph and eager modes
+- JAX — composable function transformations and XLA compilation
+
+These frameworks provide GPU acceleration via CUDA and vendor-specific integrations.
+
+## Python tooling and environment
+- Use conda or virtualenv to manage environments.
+- Install GPU-enabled packages (e.g., `torch` with CUDA builds, `tensorflow` with GPU support).
+- Common libraries: NumPy, SciPy, CuPy (NumPy on CUDA), Numba (JIT), DALI (data loading), and Hugging Face Transformers.
+
+Example (PyTorch) — quick GPU check:
+
+```python
+import torch
+
+def gpu_check():
+    print("PyTorch version:", torch.__version__)
+    if torch.cuda.is_available():
+        print("CUDA device count:", torch.cuda.device_count())
+        print("Current device:", torch.cuda.current_device())
+        print("Device name:", torch.cuda.get_device_name(torch.cuda.current_device()))
+    else:
+        print("CUDA is not available. Check drivers and CUDA toolkit.")
+
+if __name__ == '__main__':
+    gpu_check()
+```
+
+## Best practices
+- Keep data transfers between CPU and GPU minimal.
+- Use mixed precision (float16) where appropriate to speed up training and save memory.
+- Profile and optimize with Nsight Systems and Nsight Compute.
+- Pin memory and use efficient data loaders for throughput.
+
+## Resources
+- NVIDIA Developer: https://developer.nvidia.com
+- CUDA Toolkit: https://developer.nvidia.com/cuda-toolkit
+- PyTorch: https://pytorch.org
+- TensorFlow: https://www.tensorflow.org
+
+If you'd like, I can:
+- Add more framework-specific examples (TensorFlow, JAX),
+- Include instructions for installing GPU-enabled packages for specific CUDA versions, or
+- Add CI/compatibility badges or links to NVIDIA container images.
+- 
